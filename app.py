@@ -27,7 +27,7 @@ st.set_page_config(
     page_title="Real Estate Exam Questions", page_icon="📚", layout="wide"
 )
 
-FALLBACK_PRIMARY = "OneThousand_QandA_Jsub.csv.utf8.csv"
+FALLBACK_PRIMARY = "OneThousand_MCQ.csv"
 FALLBACK_SECONDARY = "sample_questions.csv"
 
 # Title FIRST so the page is never blank
