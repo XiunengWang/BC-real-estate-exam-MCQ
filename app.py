@@ -3,11 +3,26 @@ import os, re, random
 import streamlit as st
 from dotenv import load_dotenv
 import unicodedata
-
 from auth_and_progress import auth_ui, load_progress, save_progress
 from csv_loader import load_questions_from_csv  # must support the `calc` column
+from supabase import create_client
 
+
+# Try to load local .env (only works if file exists)
 load_dotenv()
+
+# First check Streamlit secrets (cloud)
+url = st.secrets.get("SUPABASE_URL", os.getenv("SUPABASE_URL"))
+key = st.secrets.get("SUPABASE_ANON_KEY", os.getenv("SUPABASE_ANON_KEY"))
+
+if not url or not key:
+    st.error(
+        "❌ Supabase is not configured. Please set SUPABASE_URL and SUPABASE_ANON_KEY."
+    )
+else:
+    supabase = create_client(url, key)
+
+
 st.set_page_config(
     page_title="Real Estate Exam Questions", page_icon="📚", layout="wide"
 )
