@@ -83,7 +83,7 @@ def row_to_question(row: dict) -> dict:
 
 def load_questions_from_csv(path: str):
     questions, problems = [], []
-    with open(path, newline="", encoding="utf-8-sig") as f:
+    with open(csv_path, mode="r", newline="", encoding="latin1") as f:
         reader = csv.DictReader(f)
         for i, row in enumerate(reader, start=2):
             try:
